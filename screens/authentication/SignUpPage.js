@@ -9,20 +9,34 @@ import {
   StyleSheet,
   Modal,
   TouchableHighlight,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { CheckBox } from "react-native-elements";
 import user from "../../assets/icons/Black-Profile.png";
+import Register from "../../stores/authSignUp";
 
-const SignUpPage = ({ navigation }) => {
+export default function SignUpPage({ navigation }) {
   const [isChecked, setChecked] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const goToLogIn = () => {
     navigation.navigate("LogIn");
   };
 
   const handleSignUp = () => {
-    setShowModal(true);
+    Register({
+      email: email,
+      fullName: fullName,
+      password: password,
+      username: username,
+    });
   };
 
   const closeModal = () => {
@@ -36,21 +50,33 @@ const SignUpPage = ({ navigation }) => {
         <View style={styles.accent} />
       </View>
 
-      <View style={styles.fillOut}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "android" ? "height" : "padding"}
+        style={styles.fillOut}
+      >
         <Image source={user} style={styles.user} />
         <Text style={styles.title}>Create an Account</Text>
 
         <Text style={styles.label}>Full Name</Text>
-        <TextInput style={styles.input} placeholder="Enter your Full name" />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your Full name"
+          onChangeText={setFullName}
+        />
 
         <Text style={styles.label}>Email Address</Text>
         <TextInput
           style={styles.input}
           placeholder="Enter your Email Address"
+          onChangeText={setEmail}
         />
 
         <Text style={styles.label}>Username</Text>
-        <TextInput style={styles.input} placeholder="Enter your Username" />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your Username"
+          onChangeText={setUsername}
+        />
 
         <Text style={styles.label}>Password</Text>
         <TextInput
@@ -64,6 +90,7 @@ const SignUpPage = ({ navigation }) => {
           style={styles.input}
           placeholder="Confirm your password"
           secureTextEntry
+          onChangeText={setPassword}
         />
 
         <CheckBox
@@ -102,10 +129,10 @@ const SignUpPage = ({ navigation }) => {
             <Text style={styles.loginLink}>Log in</Text>
           </View>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -237,5 +264,3 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
   },
 });
-
-export default SignUpPage;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -8,13 +8,18 @@ import {
   Image,
 } from "react-native";
 import user from "../../assets/icons/Black-Profile.png";
+import Login from "../../stores/authLoginIn";
 
 const LogInPage = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const goToSignUp = () => {
     navigation.navigate("SignUp");
   };
 
   const goToLandingPage = () => {
+    Login({ email: email, password: password });
     navigation.navigate("LandingPage");
   };
 
@@ -26,13 +31,18 @@ const LogInPage = ({ navigation }) => {
       <View style={styles.fillOut}>
         <Image source={user} style={styles.user} />
         <Text style={styles.subTitles}>Username or Email</Text>
-        <TextInput style={styles.input} placeholder="Username or Email" />
+        <TextInput
+          style={styles.input}
+          placeholder="Username or Email"
+          onChangeText={setEmail}
+        />
 
         <Text style={styles.subTitles}>Password</Text>
         <TextInput
           style={styles.input}
           placeholder="Enter your Password"
           secureTextEntry
+          onChangeText={setPassword}
         />
 
         <TouchableOpacity style={styles.logInButton} onPress={goToLandingPage}>
