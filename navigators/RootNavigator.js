@@ -9,7 +9,7 @@ export default function RootNavigator() {
   const Stack = createStackNavigator();
 
   return (
-    <Stack.Navigator initialRouteName="Splash">
+    <Stack.Navigator initialRouteName="LandingPage">
       <Stack.Screen
         name="Splash"
         component={SplashScreen}
