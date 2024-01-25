@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "GasSense",
-    "slug": "GasSense",
+    "name": "Aquifi",
+    "slug": "Aquifi",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logos/White-Aquifi-Logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logos/White-Aquifi-Logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0B3954"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,12 +19,24 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "foregroundImage": "./assets/logos/White-Aquifi-Logo.png",
+        "backgroundColor": "#0B3954"
+      },
+      "package": "WaterMonitoringApp.Aquifi"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "43c2952e-3256-41e3-9807-13cd6706bb3a"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/43c2952e-3256-41e3-9807-13cd6706bb3a"
     }
   }
 }

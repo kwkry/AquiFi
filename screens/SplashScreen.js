@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, Image, StyleSheet, StatusBar } from 'react-native';
-import AquiFi from '../assets/pd-logo.png';
+import AquiFi from '../assets/logos/White-Aquifi-Logo.png';
 
 const SplashScreen = ({ navigation }) => {
     useEffect(() => {
