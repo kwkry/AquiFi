@@ -1,36 +1,14 @@
-import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
-import { getDatabase, ref, onValue, update } from "firebase/database";
-import app from "../../stores/firebaseConfig";
-import { VictoryLine, VictoryChart, VictoryTheme } from "victory-native";
+import {
+  VictoryLine,
+  VictoryChart,
+  VictoryTheme,
+  VictoryAxis,
+} from "victory-native";
+import useTurbidityData from "../../stores/readTurbidityData";
 
 const TurbidityScreen = () => {
-  const dumpData = [
-    9.3, 8.9, 9.6, 8.2, 9.2, 8.5, 8.6, 9.1, 9.8, 8.3, 8.7, 8.8, 9.4, 8.4, 9.5,
-    9.0, 8.0, 9.7, 9.9, 9.7,
-  ];
-
-  const [turbidityData, setTurbidityData] = useState([]);
-  const [dataArray, setDataArray] = useState([]);
-
-  useEffect(() => {
-    const db = getDatabase(app);
-    const turbidityRef = ref(db, "Sensor/Turbidity_Level/");
-
-    onValue(turbidityRef, (snapshot) => {
-      const rawData = snapshot.val();
-      console.log(rawData);
-
-      const dataValues = Object.values(rawData);
-      console.log(dataValues);
-
-      setTurbidityData(dataValues);
-      setDataArray((prevArray) => [...prevArray, ...dataValues]); // Concatenate new values to the existing array
-    });
-  }, []);
-
-  console.log("Array:", dataArray);
-
+  const turbidityData = useTurbidityData();
   return (
     <View style={styles.container}>
       <View style={styles.frame}>
@@ -38,11 +16,20 @@ const TurbidityScreen = () => {
       </View>
 
       <View style={styles.fillOut}>
-        {turbidityData.length > 0 && (
-          <VictoryChart theme={VictoryTheme.material}>
-            <VictoryLine data={dataArray} />
-          </VictoryChart>
-        )}
+        <VictoryChart theme={VictoryTheme.material}>
+          <VictoryLine data={turbidityData} />
+          <VictoryAxis
+            style={{
+              tickLabels: { fontSize: 10, angle: 90, textAnchor: "start" },
+            }}
+          />
+          <VictoryAxis
+            dependentAxis
+            style={{
+              tickLabels: { fontSize: 10, textAnchor: "start" },
+            }}
+          />
+        </VictoryChart>
       </View>
     </View>
   );
