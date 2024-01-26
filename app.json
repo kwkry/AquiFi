@@ -3,6 +3,7 @@
     "name": "Aquifi",
     "slug": "Aquifi",
     "version": "1.0.0",
+    "owner": "project-design",
     "orientation": "portrait",
     "icon": "./assets/logos/White-Aquifi-Logo.png",
     "userInterfaceStyle": "light",
@@ -11,9 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#0B3954"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
